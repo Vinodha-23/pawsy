@@ -1,0 +1,13 @@
+div{
+    margin-left: 0px;
+}
+
+.a{
+    background-color: #F25287;
+    color: aliceblue;
+    border: 2px black;
+
+}
+body{
+    overflow-x: hidden;
+}

@@ -1,0 +1,47 @@
+<?php 
+session_start(); 
+include "db_conn.php";
+?>
+<!DOCTYPE html>
+<html>
+<body>
+     <form action="changepassword.php" method="post">
+     	<h2>change password</h2>
+     	
+     	<label>User Name</label>
+     	<input type="text" name="uname" placeholder="User Name" autocomplete="off"><br>
+          
+     	<label>your security code</label>
+     	<input type="password" name="code" placeholder="Password"><br>
+
+          <label>your new password</label>
+          <input type="password" name="newpass" placeholder="Password"><br>
+
+          <label>your new password</label>
+          <input type="password" name="confirm" placeholder="Password"><br>
+
+
+     	<button type="submit">CHANGE PASSWORD</button>
+         
+     </form>
+</body>
+</html>
+<?php
+     $username=$_POST['uname'];
+     $code=$_POST['code'];
+     $newpass=$_POST['newpass'];
+     $confirm=$_POST['confirm'];
+     $password=md5($confirm);
+     $sql = "SELECT uname FROM user WHERE uname='$username' and code='$code'";
+     $result = mysqli_query($conn, $sql);
+     if($result){
+          if($newpass==$confirm){
+           $sql1 =   "UPDATE user set `password`='$password' WHERE uname='$username'";
+     $result0 = mysqli_query($conn, $sql1);
+
+          }
+          if($result0){
+               echo "updated";
+          }
+     }
+?>
